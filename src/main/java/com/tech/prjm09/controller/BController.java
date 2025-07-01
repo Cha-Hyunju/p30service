@@ -27,6 +27,7 @@ import com.tech.command.BWriteCommand;
 import com.tech.prjm09.dao.IDao;
 import com.tech.prjm09.dto.BDto;
 import com.tech.prjm09.dto.ReBrdimgDto;
+import com.tech.prjm09.service.BContentViewService;
 import com.tech.prjm09.service.BListService;
 import com.tech.prjm09.service.BServiceInter;
 import com.tech.prjm09.utill.SearchVO;
@@ -159,15 +160,12 @@ public class BController {
 	
 	@RequestMapping("/content_view")
 	private String content_view(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BContentCommand();
-//		command.execute(model);
-		String bid=request.getParameter("bid");
-		BDto dto=iDao.contentView(bid);
-		model.addAttribute("content_view",dto);
+
+///////////////////////////////////////
+		model.addAttribute("request",request);
+		bServiceInter=new BContentViewService(iDao);
 		
-		ArrayList<ReBrdimgDto> imgList =iDao.selectImg(bid);
-		model.addAttribute("imgList",imgList);
+		bServiceInter.excute(model);
 		
 		return "content_view";
 	}
