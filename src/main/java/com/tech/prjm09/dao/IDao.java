@@ -16,6 +16,7 @@ public interface IDao {
 	public int selBid(); //max
 	public void imgwrite(int bid,String originalFile,String changeFile);
 	public BDto contentView(String sbid);
+	public void upHit(String sbid);
 	public ArrayList<ReBrdimgDto> selectImg(String sbid);
 	public BDto modifyView(String sbid);
 	public void modify(String bid,String bname,String btitle, String bcontent);
