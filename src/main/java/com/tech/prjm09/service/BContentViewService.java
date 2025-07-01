@@ -35,8 +35,10 @@ public class BContentViewService implements BServiceInter{
 		ArrayList<ReBrdimgDto> imgList =iDao.selectImg(bid);
 		model.addAttribute("imgList",imgList);
 
+
 		
 		
 	}
+
 
 }

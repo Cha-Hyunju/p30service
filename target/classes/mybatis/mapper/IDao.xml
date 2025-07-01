@@ -83,6 +83,10 @@
    SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT FROM REPLYBOARD WHERE BID=#{param1}  
    </select>
    
+   <update id="upHit">
+   UPDATE REPLYBOARD SET BHIT=BHIT+1 WHERE BID=#{param1}
+   </update>
+   
    <select id="modifyView" resultType="com.tech.prjm09.dto.BDto">
    SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT FROM REPLYBOARD WHERE BID=#{param1}
    </select>
