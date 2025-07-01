@@ -27,7 +27,9 @@ import com.tech.command.BWriteCommand;
 import com.tech.prjm09.dao.IDao;
 import com.tech.prjm09.dto.BDto;
 import com.tech.prjm09.dto.ReBrdimgDto;
+import com.tech.prjm09.service.BContentViewService;
 import com.tech.prjm09.service.BListService;
+import com.tech.prjm09.service.BModifyService;
 import com.tech.prjm09.service.BServiceInter;
 import com.tech.prjm09.utill.SearchVO;
 
@@ -159,24 +161,18 @@ public class BController {
 	
 	@RequestMapping("/content_view")
 	private String content_view(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BContentCommand();
-//		command.execute(model);
-		String bid=request.getParameter("bid");
-		BDto dto=iDao.contentView(bid);
-		model.addAttribute("content_view",dto);
+	
+		model.addAttribute("request",request);
+		bServiceInter=new BContentViewService(iDao);
+		bServiceInter.excute(model);
 		
-		ArrayList<ReBrdimgDto> imgList =iDao.selectImg(bid);
-		model.addAttribute("imgList",imgList);
 		
 		return "content_view";
 	}
 	
 	@RequestMapping("/modify_view")
 	private String modify_view(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BModifyViewCommand();
-//		command.execute(model);
+
 		String bid=request.getParameter("bid");
 		BDto dto=iDao.modifyView(bid);
 		model.addAttribute("content_view",dto);
@@ -186,14 +182,10 @@ public class BController {
 	
 	@RequestMapping("/modify")
 	private String modify(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BModifyCommand();
-//		command.execute(model);
-		String bid=request.getParameter("bid");
-		String bname=request.getParameter("bname");
-		String btitle=request.getParameter("btitle");
-		String bcontent=request.getParameter("bcontent");
-		iDao.modify(bid, bname, btitle, bcontent);
+
+		model.addAttribute("request",request);
+		bServiceInter=new BModifyService(iDao);
+		bServiceInter.excute(model);
 		
 		return "redirect:list";
 	}
